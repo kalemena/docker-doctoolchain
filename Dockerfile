@@ -35,9 +35,12 @@ RUN    cd /opt \
     && rm -rf resources/asciidoctor-reveal.js/.git \
     && rm -rf resources/reveal.js/.git
 
-ENV PATH="/opt/docToolchain/bin:${PATH}"
-
 VOLUME /project
 WORKDIR /project
 
-CMD ["/bin/bash"]
+ENV PATH="/opt/docToolchain/bin:${PATH}"
+ENV GRADLE_USER_HOME=/project/.gradle
+
+ADD [ "docInit.sh", "/opt/" ]
+
+CMD [ "/opt/docToolchain/bin/doctoolchain", ".", "generatePDF" ]
