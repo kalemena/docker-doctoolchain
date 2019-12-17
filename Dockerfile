@@ -41,6 +41,6 @@ WORKDIR /project
 ENV PATH="/opt/docToolchain/bin:${PATH}"
 ENV GRADLE_USER_HOME=/project/.gradle
 
-ADD [ "docInit.sh", "/opt/" ]
+ADD [ "docInit*.sh", "/opt/" ]
 
 CMD [ "/opt/docToolchain/bin/doctoolchain", ".", "generatePDF" ]
