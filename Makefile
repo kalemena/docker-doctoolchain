@@ -1,7 +1,7 @@
 
 
 VERSION := "master"
-REPO_DOCS := "/home/clement/workspace/repos/kalemena/docker-asciidoc/doc-samples"
+REPO_DOCS := "/home/clement/workspace/repos/kalemena/docker-doctoolchain/src/docs/arc42"
 
 all: build
 
@@ -14,3 +14,12 @@ doc.init:
 
 doc.initArc42:
 	docker run --rm -it -v ${REPO_DOCS}:/project kalemena/doctoolchain:${VERSION} /bin/bash /opt/docInitArc42.sh
+
+doc.build.pdf:
+	docker run --rm -it -v ${REPO_DOCS}:/project kalemena/doctoolchain:${VERSION}
+
+doc.build.html:
+	docker run --rm -it -v ${REPO_DOCS}:/project kalemena/doctoolchain:${VERSION} doctoolchain . generateHTML
+
+doc.build.confluence:
+	docker run --rm -it -v ${REPO_DOCS}:/project kalemena/doctoolchain:${VERSION} doctoolchain . publishToConfluence
