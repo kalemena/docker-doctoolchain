@@ -6,8 +6,7 @@ REPO_DOCS := "/home/clement/workspace/repos/kalemena/docker-doctoolchain/src/doc
 all: build
 
 build:
-	docker pull ubuntu:20.04
-	docker build -t kalemena/doctoolchain:${VERSION} .
+	docker build --pull -t kalemena/doctoolchain:${VERSION} .
 
 doc.init:
 	docker run --rm -it -v ${REPO_DOCS}:/project kalemena/doctoolchain:${VERSION} /bin/bash /opt/docInit.sh
